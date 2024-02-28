@@ -8,11 +8,9 @@ import SnapKit
 final class ImagesViewController: UIViewController {
 	
 	// MARK: - Constants
-	
 	private let inset: CGFloat = 2
-	
 	private let cellInset: CGFloat = 16
-	
+
 	private var cellPadding: CGFloat {
 		isIPhoneSE ? 10 : 15
 	}
@@ -28,7 +26,18 @@ final class ImagesViewController: UIViewController {
 	// MARK: - Content
 	private let collectionViewImages = UICollectionView(frame: .zero,
 														collectionViewLayout: UICollectionViewFlowLayout())
+
+	// MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		configureViews()
+    }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		self.navigationController?.isNavigationBarHidden = true
+	}
+	
+	// MARK: - Configure
 	private func setupCollectionView() {
 		collectionViewImages.delegate = self
 		collectionViewImages.dataSource = self
@@ -41,20 +50,12 @@ final class ImagesViewController: UIViewController {
 			flowLayout.scrollDirection = .vertical
 		}
 	}
-
-	// MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	
+	private func configureViews() {
 		view.addSubviews([collectionViewImages])
 		setupCollectionView()
 		setConstraints()
-    }
-	
-	override func viewWillAppear(_ animated: Bool) {
-		self.navigationController?.isNavigationBarHidden = true
 	}
-	
-	// MARK: - Configure
 	
 	//MARK: - Methods
 	
@@ -67,7 +68,6 @@ final class ImagesViewController: UIViewController {
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-
 extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,6 +81,7 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
 		}
 		return cell
 	}
+	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let vc = DetailsViewController()
 		navigationController?.pushViewController(vc, animated: true)

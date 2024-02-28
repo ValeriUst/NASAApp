@@ -1,13 +1,13 @@
-//  ImagesCell.swift
+//  SearchCell.swift
 //  NASAApp
-//  Created by Валерия Устименко on 26.02.2024.
+//  Created by Валерия Устименко on 27.02.2024.
 
 import UIKit
 
-final class ImagesCell: UICollectionViewCell {
+final class SearchCell: UICollectionViewCell {
 	
 	// MARK: - Constants
-	static let identifier = "ImageCell"
+	static let identifier = "SearchCell"
 	
 	// MARK: - Constants
 	private let imageView: UIImageView = {
@@ -48,7 +48,7 @@ final class ImagesCell: UICollectionViewCell {
 		setupCell()
 		setConstraints()
 	}
-    
+	
 	// MARK: - Constraints
 	private func setConstraints() {
 		imageView.snp.makeConstraints { image in

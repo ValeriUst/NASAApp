@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6488C2FA2B8DD0B900A88A6B /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488C2F92B8DD0B900A88A6B /* SearchCell.swift */; };
+		6488C2FC2B8E250E00A88A6B /*  UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488C2FB2B8E250E00A88A6B /*  UIViewController+Keyboard.swift */; };
 		64EF58D62B8C7483006E1648 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EF58D52B8C7483006E1648 /* AppDelegate.swift */; };
 		64EF58D82B8C7483006E1648 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EF58D72B8C7483006E1648 /* SceneDelegate.swift */; };
 		64EF58DA2B8C7483006E1648 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EF58D92B8C7483006E1648 /* MainTabBarViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6488C2F92B8DD0B900A88A6B /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		6488C2FB2B8E250E00A88A6B /*  UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		64EF58D22B8C7483006E1648 /* NASAApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EF58D52B8C7483006E1648 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64EF58D72B8C7483006E1648 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				64EF58F92B8C75F4006E1648 /* UIView + AddSubview.swift */,
+				6488C2FB2B8E250E00A88A6B /*  UIViewController+Keyboard.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				64EF59072B8C7735006E1648 /* SearchViewController.swift */,
+				6488C2F92B8DD0B900A88A6B /* SearchCell.swift */,
 			);
 			path = SearchScreen;
 			sourceTree = "<group>";
@@ -251,10 +257,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				64EF59082B8C7735006E1648 /* SearchViewController.swift in Sources */,
+				6488C2FC2B8E250E00A88A6B /*  UIViewController+Keyboard.swift in Sources */,
 				64EF58F82B8C75E5006E1648 /* Constants.swift in Sources */,
 				64EF58DA2B8C7483006E1648 /* MainTabBarViewController.swift in Sources */,
 				64EF59062B8C7714006E1648 /* DetailsViewController.swift in Sources */,
 				64EF59042B8C76F4006E1648 /* ImagesViewController.swift in Sources */,
+				6488C2FA2B8DD0B900A88A6B /* SearchCell.swift in Sources */,
 				64EF58FA2B8C75F4006E1648 /* UIView + AddSubview.swift in Sources */,
 				64EF58D62B8C7483006E1648 /* AppDelegate.swift in Sources */,
 				64EF58D82B8C7483006E1648 /* SceneDelegate.swift in Sources */,
