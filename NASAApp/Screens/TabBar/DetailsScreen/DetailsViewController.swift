@@ -45,18 +45,17 @@ final class DetailsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .black
-		setupAddSubviews()
-		setConstraints()
-	}
-	
-	private func setupAddSubviews() {
-		view.addSubviews([scrollView])
-		scrollView.addSubviews([viewContainer])
-		viewContainer.addSubviews([imageDetail, titleLabel, storyLabel])
+		configureViews()
 	}
 	
 	// MARK: - Configure
+	private func configureViews() {
+		view.backgroundColor = .black
+		view.addSubviews([scrollView])
+		scrollView.addSubviews([viewContainer])
+		viewContainer.addSubviews([imageDetail, titleLabel, storyLabel])
+		setConstraints()
+	}
 	
 	//MARK: - Methods
 	

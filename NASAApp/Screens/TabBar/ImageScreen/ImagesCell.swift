@@ -3,6 +3,7 @@
 //  Created by Валерия Устименко on 26.02.2024.
 
 import UIKit
+import Kingfisher
 
 final class ImagesCell: UICollectionViewCell {
 	
@@ -20,7 +21,6 @@ final class ImagesCell: UICollectionViewCell {
 	
 	private let nameLabel: UILabel = {
 		let label = UILabel()
-		label.text = "kdkdkkdkdkd kdkdkkdkdkd kdkdkkdkdkd kdkdkkdkdkd"
 		label.textColor = .white
 		label.numberOfLines = Constants.numberOfLinesCell
 		label.textAlignment = .center
@@ -38,6 +38,15 @@ final class ImagesCell: UICollectionViewCell {
 	}
 	
 	// MARK: - Configure
+	func configure(with model: ImagesModel) {
+		nameLabel.text = model.title ?? ""
+		if let urlString = model.url, let url = URL(string: urlString) {
+			imageView.kf.setImage(with: url)
+		} else {
+			imageView.image = UIImage(named: "placeholder_image")
+		}
+	}
+	
 	private func setupCell() {
 		layer.cornerRadius = Constants.cornerRadiusStandard
 		layer.masksToBounds = true

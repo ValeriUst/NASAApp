@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		6488C2FA2B8DD0B900A88A6B /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488C2F92B8DD0B900A88A6B /* SearchCell.swift */; };
 		6488C2FC2B8E250E00A88A6B /*  UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488C2FB2B8E250E00A88A6B /*  UIViewController+Keyboard.swift */; };
+		6488C2FF2B8F226A00A88A6B /* ImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488C2FE2B8F226A00A88A6B /* ImagesModel.swift */; };
+		6488C3022B8F238500A88A6B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6488C3012B8F238500A88A6B /* Alamofire */; };
+		6488C3042B8F719200A88A6B /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488C3032B8F719200A88A6B /* APIError.swift */; };
 		64EF58D62B8C7483006E1648 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EF58D52B8C7483006E1648 /* AppDelegate.swift */; };
 		64EF58D82B8C7483006E1648 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EF58D72B8C7483006E1648 /* SceneDelegate.swift */; };
 		64EF58DA2B8C7483006E1648 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EF58D92B8C7483006E1648 /* MainTabBarViewController.swift */; };
@@ -29,6 +32,8 @@
 /* Begin PBXFileReference section */
 		6488C2F92B8DD0B900A88A6B /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		6488C2FB2B8E250E00A88A6B /*  UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		6488C2FE2B8F226A00A88A6B /* ImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesModel.swift; sourceTree = "<group>"; };
+		6488C3032B8F719200A88A6B /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		64EF58D22B8C7483006E1648 /* NASAApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NASAApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64EF58D52B8C7483006E1648 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64EF58D72B8C7483006E1648 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64EF58EB2B8C74A5006E1648 /* Kingfisher in Frameworks */,
+				6488C3022B8F238500A88A6B /* Alamofire in Frameworks */,
 				64EF58EE2B8C74B5006E1648 /* SnapKit in Frameworks */,
 				64EF58F02B8C74B5006E1648 /* SnapKit-Dynamic in Frameworks */,
 			);
@@ -59,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6488C2FD2B8F225700A88A6B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6488C2FE2B8F226A00A88A6B /* ImagesModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		64EF58C92B8C7483006E1648 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +92,7 @@
 		64EF58D42B8C7483006E1648 /* NASAApp */ = {
 			isa = PBXGroup;
 			children = (
+				6488C2FD2B8F225700A88A6B /* Models */,
 				64EF58F12B8C7576006E1648 /* Resousces */,
 				64EF58F22B8C75A8006E1648 /* Extensions */,
 				64EF58FB2B8C7613006E1648 /* Network */,
@@ -127,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				64EF58FC2B8C7628006E1648 /* NetworkService.swift */,
+				6488C3032B8F719200A88A6B /* APIError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -197,6 +213,7 @@
 				64EF58EA2B8C74A5006E1648 /* Kingfisher */,
 				64EF58ED2B8C74B5006E1648 /* SnapKit */,
 				64EF58EF2B8C74B5006E1648 /* SnapKit-Dynamic */,
+				6488C3012B8F238500A88A6B /* Alamofire */,
 			);
 			productName = NASAApp;
 			productReference = 64EF58D22B8C7483006E1648 /* NASAApp.app */;
@@ -229,6 +246,7 @@
 			packageReferences = (
 				64EF58E92B8C74A5006E1648 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				64EF58EC2B8C74B5006E1648 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				6488C3002B8F238500A88A6B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 64EF58D32B8C7483006E1648 /* Products */;
 			projectDirPath = "";
@@ -264,10 +282,12 @@
 				64EF59042B8C76F4006E1648 /* ImagesViewController.swift in Sources */,
 				6488C2FA2B8DD0B900A88A6B /* SearchCell.swift in Sources */,
 				64EF58FA2B8C75F4006E1648 /* UIView + AddSubview.swift in Sources */,
+				6488C2FF2B8F226A00A88A6B /* ImagesModel.swift in Sources */,
 				64EF58D62B8C7483006E1648 /* AppDelegate.swift in Sources */,
 				64EF58D82B8C7483006E1648 /* SceneDelegate.swift in Sources */,
 				64EF590A2B8C874B006E1648 /* ImagesCell.swift in Sources */,
 				64EF58FD2B8C7628006E1648 /* NetworkService.swift in Sources */,
+				6488C3042B8F719200A88A6B /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +512,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6488C3002B8F238500A88A6B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
 		64EF58E92B8C74A5006E1648 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -511,6 +539,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6488C3012B8F238500A88A6B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6488C3002B8F238500A88A6B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		64EF58EA2B8C74A5006E1648 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 64EF58E92B8C74A5006E1648 /* XCRemoteSwiftPackageReference "Kingfisher" */;

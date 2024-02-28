@@ -8,6 +8,8 @@ import SnapKit
 final class ImagesViewController: UIViewController {
 	
 	// MARK: - Constants
+	private var model: [ImagesModel] = [ImagesModel]()
+	
 	private let inset: CGFloat = 2
 	private let cellInset: CGFloat = 16
 
@@ -31,6 +33,7 @@ final class ImagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		configureViews()
+		fetchData()
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -56,8 +59,23 @@ final class ImagesViewController: UIViewController {
 		setupCollectionView()
 		setConstraints()
 	}
-	
+									   
 	//MARK: - Methods
+	private func fetchData() {
+		
+		APICaller.shared.getImagesNASA { [weak self] result in
+			switch result {
+			case .success(let model):
+				self?.model = model
+				
+				DispatchQueue.main.async {
+					self?.collectionViewImages.reloadData()
+				}
+			case .failure(let error):
+				print(error.localizedDescription)
+			}
+		}
+	}
 	
 	// MARK: - Constraints
 	private func setConstraints() {
@@ -71,7 +89,7 @@ final class ImagesViewController: UIViewController {
 extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 30
+		return model.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,6 +97,8 @@ extension ImagesViewController: UICollectionViewDelegate, UICollectionViewDataSo
 															for: indexPath) as? ImagesCell else {
 			return UICollectionViewCell()
 		}
+		let title = model[indexPath.row]
+		cell.configure(with: title)
 		return cell
 	}
 	
