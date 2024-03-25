@@ -5,35 +5,22 @@
 import Foundation
 import Alamofire
 
-struct ConstantsAPI {
-	static let API_KEY = "swpKyEJKYlYNvwUXL5q59kPnqdjnhhkGpVrgBNR2"
-	static let baseURL = "https://api.nasa.gov"
-	static let count = "&count="
-}
-
 final class APICaller {
 	
 	static let shared = APICaller()
 	
-	func getImagesNASA(completion: @escaping (Result<[ImagesModel], Error>) -> Void) {
-		
-		guard let url = URL(string: "\(ConstantsAPI.baseURL)/planetary/apod?api_key=\(ConstantsAPI.API_KEY)\(ConstantsAPI.count)20") else {
-			completion(.failure(APIError.invalidURL))
-			return
-		}
-		
-		AF.request(
-			url,
-			method: .get,
-			parameters: nil,
-			headers: nil,
-			interceptor: nil
-		).validate().responseData { response in
-			
+	private func performRequest<T: Decodable>(_ url: URL, decodingType: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+		AF
+			.request(url, method: .get)
+			.validate()
+			.responseData { response in
+				
 			switch response.result {
 			case .success(let data):
 				do {
-					let result = try JSONDecoder().decode([ImagesModel].self, from: data)
+					let decoder = JSONDecoder()
+					decoder.keyDecodingStrategy = .convertFromSnakeCase
+					let result = try decoder.decode(decodingType, from: data)
 					completion(.success(result))
 				} catch {
 					completion(.failure(APIError.failedToDecodeData))
@@ -42,5 +29,25 @@ final class APICaller {
 				completion(.failure(error))
 			}
 		}
+	}
+	func getImagesNASA(completion: @escaping (Result<[ImagesModel], Error>) -> Void) {
+		let dateFormatter = APIDateFormatter.shared.dateMinusMonths(2, from: Date())
+
+		guard let url = URL(string: "\(ConstantsAPI.imageURL)\(ConstantsAPI.planetaryDate)\(dateFormatter)&api_key=\(ConstantsAPI.API_KEY)") else {
+			completion(.failure(APIError.invalidURL))
+			return
+		}
+		
+		performRequest(url, decodingType: [ImagesModel].self, completion: completion)
+	}
+	
+	func getSearch(keywords: String?, page: Int, completion: @escaping (Result<SearchModel, Error>) -> Void) {
+		let words = keywords?.replacingOccurrences(of: " ", with: ",") ?? ""
+		
+		guard let url = URL(string: "\(ConstantsAPI.searchURL)\(words)&\(ConstantsAPI.typeSearch)image&\(ConstantsAPI.page)\(page)&\(ConstantsAPI.limit)20") else {
+			completion(.failure(APIError.invalidURL))
+			return
+		}
+		performRequest(url, decodingType: SearchModel.self, completion: completion)
 	}
 }

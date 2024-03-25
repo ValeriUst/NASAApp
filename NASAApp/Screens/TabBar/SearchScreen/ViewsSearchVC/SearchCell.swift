@@ -1,19 +1,15 @@
-//  ImagesCell.swift
+//  SearchCell.swift
 //  NASAApp
-//  Created by Валерия Устименко on 26.02.2024.
+//  Created by Валерия Устименко on 27.02.2024.
 
 import UIKit
 import Kingfisher
 
-final class ImagesCell: UICollectionViewCell {
-	
-	// MARK: - Constants
-	static let identifier = "ImageCell"
-	
+final class SearchCell: UICollectionViewCell {
+		
 	// MARK: - Constants
 	private let imageView: UIImageView = {
 		let image = UIImageView()
-		image.image = UIImage(named: "galaxy")
 		image.contentMode = .scaleAspectFill
 		image.clipsToBounds = true
 		return image
@@ -34,19 +30,10 @@ final class ImagesCell: UICollectionViewCell {
 	}
 	
 	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		fatalError(Constants.textFatalError)
 	}
 	
 	// MARK: - Configure
-	func configure(with model: ImagesModel) {
-		nameLabel.text = model.title ?? ""
-		if let urlString = model.url, let url = URL(string: urlString) {
-			imageView.kf.setImage(with: url)
-		} else {
-			imageView.image = UIImage(named: "placeholder_image")
-		}
-	}
-	
 	private func setupCell() {
 		layer.cornerRadius = Constants.cornerRadiusStandard
 		layer.masksToBounds = true
@@ -57,12 +44,25 @@ final class ImagesCell: UICollectionViewCell {
 		setupCell()
 		setConstraints()
 	}
-    
+	
+	func configure(with model: Item) {
+		nameLabel.text = model.data?.first?.title ?? Constants.errorNameLabel
+		if let urlString = model.links?.first?.href, let url = URL(string: urlString) {
+			let options: KingfisherOptionsInfo = [.transition(.fade(0.2)), .cacheOriginalImage]
+			imageView.kf.setImage(with: url,
+								  placeholder: UIImage(named: Constants.nilPhoto),
+								  options: options)
+		} else {
+			imageView.image = UIImage(named: Constants.nilPhoto)
+		}
+	}
+	
 	// MARK: - Constraints
 	private func setConstraints() {
 		imageView.snp.makeConstraints { image in
 			image.edges.equalToSuperview()
 		}
+		
 		nameLabel.snp.makeConstraints { label in
 			label.centerX.equalTo(imageView.snp.centerX)
 			label.bottom.equalTo(imageView.snp.bottom).inset(Constants.cellBottom)
